@@ -1300,7 +1300,7 @@ def display_dataset_results(dataset_label):
         st.dataframe(erf_df.style.map(highlight_erf, subset=['Critical ERF']))
 
         def display_stress_analysis():
-        st.subheader("🔄 Cyclic Operating Fatigue Analysis")
+            st.subheader("🔄 Cyclic Operating Fatigue Analysis")
         
         fatigue_matrix = {
             "Stress Excursion Vector": ["Axial Bending", "Hoop Tension Peak", "Radial Wall Shear"],
