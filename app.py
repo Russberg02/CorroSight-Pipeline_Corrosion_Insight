@@ -1324,27 +1324,24 @@ if enable_ansys_mode:
         st.markdown("---")
         st.header("🔬 Advanced Research Module: FEA Projection")
         st.write("Tracks hidden load capacity via true isotropic plasticity modeling.")
-    # 1. Check which grade properties are currently active in your fields
-    # Change 'Sy' to match whatever your original Yield Strength variable name is
-try:
-        current_yield = Sy
-except NameError:
-        current_yield = 450.0  # Safe fallback baseline
 
-    # Change 'Dc' and 't' to match your original depth and thickness variables if named differently
-try:
-        d_t_ratio_calc = Dc / t
-except NameError:
-        d_t_ratio_calc = 0.3  # Safe fallback baseline
+        # Safely assign variables using local scope or fallbacks
+        # This replaces the messy try/except blocks
+        current_yield = Sy if 'Sy' in locals() else 450.0
+        
+        # Ensure we don't divide by zero if 't' is accidentally 0
+        if 'Dc' in locals() and 't' in locals() and t > 0:
+            d_t_ratio_calc = Dc / t
+        else:
+            d_t_ratio_calc = 0.3
 
-    # Change 'burst_pressure' to match your original final calculated output variable
-try:
-        base_pressure = burst_pressure
-except NameError:
-    try:
+        # Assign base_pressure from the most reliable available source
+        if 'burst_pressure' in locals():
+            base_pressure = burst_pressure
+        elif 'burst_pressure_asme' in locals():
             base_pressure = burst_pressure_asme
-finally NameError:
-            base_pressure = 10.0  # Safe fallback baseline
+        else:
+            base_pressure = 10.0
 
     # 2. Material-dependent correction factor logic for X52 vs X65 steel grades
     if current_yield >= 450.0:  # API 5L X65 parameters
