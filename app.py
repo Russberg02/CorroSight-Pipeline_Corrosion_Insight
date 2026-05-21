@@ -1299,7 +1299,7 @@ def display_dataset_results(dataset_label):
         st.write("### 📈 Estimated Response Factor (ERF) Performance Ledger")
         st.dataframe(erf_df.style.map(highlight_erf, subset=['Critical ERF']))
 
-    def display_stress_analysis():
+        def display_stress_analysis():
         st.subheader("🔄 Cyclic Operating Fatigue Analysis")
         
         fatigue_matrix = {
