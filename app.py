@@ -89,70 +89,70 @@ st.markdown(f"""
     h1, h2, h3, h4, h5, h6 {{
         color: {DARK_TEXT} !important;
         border-bottom: 2 px solid {PRIMARY};
-        padding-bottom: 0.3rem;
+        padding-bottom: 0.3 rem;
     }}
     
     [data-testid="stSidebar"] {{
         background-color: {CARD_BG};
         color: {DARK_TEXT};
-        border-right: 2px solid {PRIMARY};
+        border-right: 2 px solid {PRIMARY};
     }}
     
     .stButton>button {{
         background-color: {PRIMARY};
         color: {LIGHT_TEXT};
-        border-radius: 4px;
-        border: 2px solid {PRIMARY};
+        border-radius: 4 px;
+        border: 2 px solid {PRIMARY};
         font-weight: bold;
-        padding: 0.5rem 1rem;
+        padding: 0.5 rem 1 rem;
         transition: all 0.3s ease;
     }}
     .stButton>button:hover {{
         background-color: {ACCENT};
         color: {LIGHT_TEXT};
-        transform: translateY(-2px);
+        transform: translateY(-2 px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }}
     
     .card {{
         background: {CARD_BG};
         border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        padding: 20px;
-        margin-bottom: 20px;
-        border-left: 4px solid {PRIMARY};
+        box-shadow: 0 4 px 12 px rgba(0,0,0,0.08);
+        padding: 20 px;
+        margin-bottom: 20 px;
+        border-left: 4 px solid {PRIMARY};
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }}
     .card:hover {{
         transform: translateY(-5px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        box-shadow: 0 6 px 16 px rgba(0,0,0,0.12);
     }}
     
     .safe {{ color: #43A047; font-weight: bold; }}
     .unsafe {{ color: {WARNING}; font-weight: bold; }}
     
     .value-display {{
-        font-size: 1.8rem;
+        font-size: 1.8 rem;
         font-weight: bold;
         color: {PRIMARY};
         text-align: center;
-        margin: 10px 0;
+        margin: 10 px 0;
     }}
     
     .section-header {{
         background: linear-gradient(90deg, {PRIMARY}, #2E86AB);
         color: {LIGHT_TEXT};
-        padding: 12px 20px;
-        border-radius: 8px;
-        margin: 25px 0 15px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 12 px 20px;
+        border-radius: 8 px;
+        margin: 25 px 0 15 px;
+        box-shadow: 0 4 px 6 px rgba(0,0,0,0.1);
     }}
     
     .progress-container {{
-        height: 10px;
+        height: 10 px;
         background-color: #E0E0E0;
-        border-radius: 5px;
-        margin: 15px 0;
+        border-radius: 5 px;
+        margin: 15 px 0;
         overflow: hidden;
     }}
     .progress-bar {{
@@ -161,8 +161,8 @@ st.markdown(f"""
     }}
     
     table {{
-        border: 1px solid #E0E0E0 !important;
-        border-radius: 8px;
+        border: 1 px solid #E0E0E0 !important;
+        border-radius: 8 px;
         overflow: hidden;
     }}
     th {{
@@ -176,25 +176,25 @@ st.markdown(f"""
     /* Additional styles */
     .metric-card {{
         background: {CARD_BG};
-        border-radius: 8px;
-        padding: 15px;
+        border-radius: 8 px;
+        padding: 15 px;
         text-align: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-        border-top: 4px solid {PRIMARY};
+        box-shadow: 0 4 px 8 px rgba(0,0,0,0.08);
+        border-top: 4 px solid {PRIMARY};
         transition: all 0.3s ease;
     }}
     .metric-card:hover {{
         transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        box-shadow: 0 8 px 16 px rgba(0,0,0,0.12);
     }}
     
     .footer {{
         background: linear-gradient(90deg, {PRIMARY}, #2E86AB);
         color: {LIGHT_TEXT};
-        padding: 25px;
-        border-radius: 8px;
-        margin-top: 30px;
-        box-shadow: 0 -4px 6px rgba(0,0,0,0.05);
+        padding: 25 px;
+        border-radius: 8 px;
+        margin-top: 30 px;
+        box-shadow: 0 -4 px 6 px rgba(0,0,0,0.05);
     }}
     
     @keyframes pulse {{
