@@ -48,13 +48,6 @@ pd.io.formats.style.Styler.applymap = pd.io.formats.style.Styler.map
 
 # Custom CSS with original colors
 st.markdown(f"""
-def generate_ansys_chart(P_ansys_projected, Sy, UTS, base_pressure, D, t):
-"""Generates a clean validation plot tracing material yielding limits"""
-pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
-@@ -42,6 +80,139 @@ def main():
-
-# Custom CSS Injector with corrected safe arguments
-st.markdown(f"""
 <style>
     .stApp {{
         background: {BACKGROUND} !important;
