@@ -154,11 +154,9 @@ display_stress_analysis()
 # NEW RESEARCH MODULE: ANSYS SIMULATION PREDICTOR MODULE
 # --------------------------------------------------------------------------
 if enable_ansys_mode:
-st.markdown("---")
-st.header(" Advanced Research Module: Finite Element Analysis (FEA) Projection")
-st.write("This section tracks the hidden material load-bearing capacity revealed by
-modeling true isotropic plasticity inside Ansys solver matrices instead of simple design
-formulas.")
+        st.markdown("---")
+        st.header("🔬 Advanced Research Module: FEA Projection")
+        st.write("Tracks hidden load capacity via true isotropic plasticity modeling.")
 current_yield = Sy
 current_uts = UTS
 d_t_ratio_calc = Dc / t if t > 0 else 0.4
