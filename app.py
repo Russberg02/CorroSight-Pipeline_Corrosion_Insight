@@ -1431,6 +1431,23 @@ st.markdown("---")
 st.header("🔬 Advanced Research Module: FEA Projection")
 st.write("""This section tracks the hidden material load-bearing capacity revealed by modeling true isotropic plasticity inside Ansys solver matrices instead of simple design formulas.""")
 
+def main():
+    # 1. DEFINE YOUR INPUTS FIRST
+    # Ensure these variables are assigned before the FEA code
+    grade_preset = st.sidebar.selectbox("Material Grade", ["API 5L X52", "API 5L X65"])
+    
+    if grade_preset == "API 5L X65":
+        Sy, UTS = 450.0, 535.0
+    else:
+        Sy, UTS = 360.0, 460.0
+        
+    D = st.sidebar.number_input("Pipeline Diameter (mm)", value=508.0)
+    t = st.sidebar.number_input("Wall Thickness (mm)", value=12.7)
+
+    # 2. PERFORM CALCULATIONS
+    # Now that Sy, UTS, D, and t are defined, this will not cause a NameError
+    burst_pressure = (2 * Sy * t) / D
+    
 # Calculations
 current_yield = Sy
 current_uts = UTS
