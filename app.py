@@ -52,8 +52,9 @@ def generate_ansys_chart(P_ansys_projected, Sy, UTS, base_pressure, D, t):
 """Generates a clean validation plot tracing material yielding limits"""
 pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
 @@ -42,6 +80,139 @@ def main():
+
 # Custom CSS Injector with corrected safe arguments
-st.markdown("""
+st.markdown(f"""
 <style>
     .stApp {{
         background: {BACKGROUND} !important;
@@ -148,7 +149,6 @@ st.markdown("""
         background-color: #F5F7FA !important;
     }}
     
-    /* Additional styles */
     .metric-card {{
         background: {CARD_BG};
         border-radius: 8px;
@@ -157,6 +157,7 @@ st.markdown("""
         box-shadow: 0 4px 8px rgba(0,0,0,0.08);
         border-top: 4px solid {PRIMARY};
         transition: all 0.3s ease;
+        background-color: #f8f9fa;
     }}
     .metric-card:hover {{
         transform: translateY(-5px);
@@ -188,11 +189,6 @@ st.markdown("""
         border-radius: 8px;
         margin: 30px 0 15px;
     }}
-.metric-card {
-background-color: #f8f9fa;
-padding: 15px;
-@@ -51,6 +222,1078 @@ def main():
-}
 </style>
 """, unsafe_allow_html=True)
 
