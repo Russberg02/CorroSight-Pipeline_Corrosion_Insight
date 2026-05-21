@@ -1280,7 +1280,6 @@ def display_dataset_results(dataset_label):
         b_col2.metric("ASME B31G Safe Yield Limit", f"{burst_pressure_asme:.2f} MPa")
         b_col3.metric("DNV-RP-F101 Allowable Cap", f"{burst_pressure_dnv:.2f} MPa")
         
-        # Cleaned up data matrix (removed the split line string conflict)
         data_matrix = {
             "Assessment Criteria": ["Maximum Design Limits", "Operating Thresholds", "Corrosion Safety Envelope"],
             "Calculated Index (MPa)": [
@@ -1302,6 +1301,7 @@ def display_dataset_results(dataset_label):
 
     def display_stress_analysis():
         st.subheader("🔄 Cyclic Operating Fatigue Analysis")
+        
         fatigue_matrix = {
             "Stress Excursion Vector": ["Axial Bending", "Hoop Tension Peak", "Radial Wall Shear"],
             "Alternating Range (MPa)": [45.2, 112.8, 14.5],
@@ -1309,14 +1309,14 @@ def display_dataset_results(dataset_label):
         }
         df_fatigue = pd.DataFrame(fatigue_matrix)
         
-        # Cleaned up duplicated conditional return statement
         def highlight_fatigue(val):
             return 'font-weight: bold; color: #dc3545;' if val == "Review Phase" else 'color: #28a745;'
             
         st.dataframe(df_fatigue.style.map(highlight_fatigue, subset=['Fatigue Status Check']))
 
-    # Triggering baseline displays cleanly inside main workspace
+    # Triggering baseline displays cleanly inside main workspace scope
     display_dataset_results('Dataset 1')
+    display_stress_analysis()
     
 # NEW RESEARCH MODULE: ANSYS SIMULATION PREDICTOR MODULE
 # --------------------------------------------------------------------------
