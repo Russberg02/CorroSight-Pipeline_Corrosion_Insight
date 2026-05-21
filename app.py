@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+# Fixes all deprecated .applymap() calls across your entire script instantly
+pd.api.types.is_dict_like.__self__.DataFrame.style.applymap = pd.api.types.is_dict_like.__self__.DataFrame.style.map
 import numpy as np
 import math
 import matplotlib.pyplot as plt
