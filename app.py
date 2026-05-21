@@ -1358,7 +1358,7 @@ if enable_ansys_mode:
                 st.warning("⚠️ **Calibration Variance Notice:** The variation exceeds 5%. This indicates highly non-linear geometric or material localized thinning behaviors that require further mesh calibration.")
 
 st.markdown("### 📈 Non-Linear Material Stress Path Trajectory")
-   import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
     # Generate a mock internal pressure array from 0 up to your projected failure limit
     pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
