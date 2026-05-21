@@ -1326,24 +1326,24 @@ if enable_ansys_mode:
         st.write("Tracks hidden load capacity via true isotropic plasticity modeling.")
     # 1. Check which grade properties are currently active in your fields
     # Change 'Sy' to match whatever your original Yield Strength variable name is
-    try:
+                 try:
         current_yield = Sy
     except NameError:
         current_yield = 450.0  # Safe fallback baseline
 
     # Change 'Dc' and 't' to match your original depth and thickness variables if named differently
-    try:
+                 try:
         d_t_ratio_calc = Dc / t
     except NameError:
         d_t_ratio_calc = 0.3  # Safe fallback baseline
 
     # Change 'burst_pressure' to match your original final calculated output variable
-    try:
+                 try:
         base_pressure = burst_pressure
     except NameError:
-        try:
+                 try:
             base_pressure = burst_pressure_asme
-        except NameError:
+    except NameError:
             base_pressure = 10.0  # Safe fallback baseline
 
     # 2. Material-dependent correction factor logic for X52 vs X65 steel grades
