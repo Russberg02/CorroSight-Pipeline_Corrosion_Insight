@@ -1430,9 +1430,7 @@ st.markdown("### 📈 Non-Linear Material Stress Path Trajectory")
 import matplotlib.pyplot as plt
 st.markdown("---")
 st.header(" Advanced Research Module: Finite Element Analysis (FEA) Projection")
-st.write("This section tracks the hidden material load-bearing capacity revealed by
-modeling true isotropic plasticity inside Ansys solver matrices instead of simple design
-formulas.")
+st.write("This section tracks the hidden material load-bearing capacity revealed by modeling true isotropic plasticity inside Ansys solver matrices instead of simple design formulas.")
 current_yield = Sy
 current_uts = UTS
 d_t_ratio_calc = Dc / t if t > 0 else 0.4
