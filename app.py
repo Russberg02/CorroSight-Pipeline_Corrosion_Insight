@@ -1358,22 +1358,24 @@ if enable_ansys_mode:
                 st.warning("⚠️ **Calibration Variance Notice:** The variation exceeds 5%. This indicates highly non-linear geometric or material localized thinning behaviors that require further mesh calibration.")
 
 st.markdown("### 📈 Non-Linear Material Stress Path Trajectory")
-import matplotlib.pyplot as plt
+    import matplotlib.pyplot as plt
 
-# Generate a mock internal pressure array from 0 up to your projected failure limit
-pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
-stress_axis = []
+    # 4 spaces of indentation
+    pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
+    stress_axis = []
 
-# Map the multilinear stress response of X65 steel across elastic and plastic phases
-for p in pressure_axis:
-    # Linear Elastic Region
-    calculated_stress = (p * D) / (2 * t)
-    if calculated_stress > Sy:
-            # Non-linear Plastic Work Hardening Region (Bending path toward UTS)
+    # 4 spaces of indentation
+    for p in pressure_axis:
+        # 8 spaces of indentation (Inside the for loop)
+        calculated_stress = (p * D) / (2 * t)
+        
+        if calculated_stress > Sy:
+            # 12 spaces of indentation (Inside the if statement)
             excess_stress = calculated_stress - Sy
             plastic_stress = Sy + (excess_stress * ((UTS - Sy) / (P_ansys_projected * 1.1)))
             stress_axis.append(min(plastic_stress, UTS * 1.05))
         else:
+            # 12 spaces of indentation (Inside the else statement)
             stress_axis.append(calculated_stress)
 
     # Render the chart using Matplotlib
