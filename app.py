@@ -78,7 +78,7 @@ st.pyplot(fig)
 def main():
 st.set_page_config(page_title="CorroSight - Pipeline Corrosion Insight", layout="wide")
 # Custom CSS Injector with corrected safe arguments
-st.markdown("""
+st.markdown(f"""
 <style>
     .stApp {{
         background: {BACKGROUND} !important;
