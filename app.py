@@ -1363,17 +1363,14 @@ import matplotlib.pyplot as plt
 pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
 stress_axis = []
 
-    for p in pressure_axis:
-        # 8 spaces of indentation (Inside the for loop)
+for p in pressure_axis:
         calculated_stress = (p * D) / (2 * t)
         
         if calculated_stress > Sy:
-            # 12 spaces of indentation (Inside the if statement)
             excess_stress = calculated_stress - Sy
             plastic_stress = Sy + (excess_stress * ((UTS - Sy) / (P_ansys_projected * 1.1)))
             stress_axis.append(min(plastic_stress, UTS * 1.05))
         else:
-            # 12 spaces of indentation (Inside the else statement)
             stress_axis.append(calculated_stress)
 
     # Render the chart using Matplotlib
