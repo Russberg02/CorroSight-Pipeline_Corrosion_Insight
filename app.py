@@ -105,23 +105,23 @@ st.markdown(f"""
         border: 2 px solid {PRIMARY};
         font-weight: bold;
         padding: 0.5 rem 1 rem;
-        transition: all 0.3s ease;
+        transition: all 0.3 s ease;
     }}
     .stButton>button:hover {{
         background-color: {ACCENT};
         color: {LIGHT_TEXT};
         transform: translateY(-2 px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 4 px 8 px rgba(0,0,0,0.1);
     }}
     
     .card {{
         background: {CARD_BG};
-        border-radius: 8px;
+        border-radius: 8 px;
         box-shadow: 0 4 px 12 px rgba(0,0,0,0.08);
         padding: 20 px;
         margin-bottom: 20 px;
         border-left: 4 px solid {PRIMARY};
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3 s ease, box-shadow 0.3 s ease;
     }}
     .card:hover {{
         transform: translateY(-5px);
@@ -142,7 +142,7 @@ st.markdown(f"""
     .section-header {{
         background: linear-gradient(90deg, {PRIMARY}, #2E86AB);
         color: {LIGHT_TEXT};
-        padding: 12 px 20px;
+        padding: 12 px 20 px;
         border-radius: 8 px;
         margin: 25 px 0 15 px;
         box-shadow: 0 4 px 6 px rgba(0,0,0,0.1);
@@ -181,7 +181,7 @@ st.markdown(f"""
         text-align: center;
         box-shadow: 0 4 px 8 px rgba(0,0,0,0.08);
         border-top: 4 px solid {PRIMARY};
-        transition: all 0.3s ease;
+        transition: all 0.3 s ease;
     }}
     .metric-card:hover {{
         transform: translateY(-5px);
@@ -203,22 +203,22 @@ st.markdown(f"""
         100% {{ transform: scale(1); }}
     }}
     .pulse {{
-        animation: pulse 2s infinite;
+        animation: pulse 2 s infinite;
     }}
     
     .dataset-header {{
         background: linear-gradient(90deg, {PRIMARY}, #2c3e50);
         color: {LIGHT_TEXT};
-        padding: 15px 20px;
-        border-radius: 8px;
-        margin: 30px 0 15px;
+        padding: 15 px 20 px;
+        border-radius: 8 px;
+        margin: 30 px 0 15 px;
     }}
 .metric-card {
 background-color: #f8f9fa;
-padding: 15px;
-border-radius: 10px;
-border-left: 5px solid #007bff;
-margin-bottom: 10px;
+padding: 15 px;
+border-radius: 10 px;
+border-left: 5 px solid #007bff;
+margin-bottom: 10 px;
 }
 </style>
 """, unsafe_allow_html=True)
