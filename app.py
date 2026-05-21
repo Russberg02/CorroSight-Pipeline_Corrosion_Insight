@@ -1345,14 +1345,17 @@ if enable_ansys_mode:
 
     # 2. Material-dependent correction factor logic for X52 vs X65 steel grades
 # Material-dependent correction factor logic
-    if current_yield >= 450.0:  # API 5L X65 parameters
-        alpha_factor = 1.14
-        beta_factor = 0.06
-        m_label = "API 5L X65 (High Strain Restitution Grade)"
-    else:                       # API 5L X52 / Lower grade parameters
-        alpha_factor = 1.09
-        beta_factor = 0.04
-        m_label = "API 5L X52 (Standard Ductility Grade)"
+# API 5L X65 parameters
+if current_yield >= 450.0:
+    alpha_factor = 1.14
+    beta_factor = 0.06
+    m_label = "API 5L X65 (High Strain Restitution Grade)"
+
+# API 5L X52 / Lower grade parameters
+else:
+    alpha_factor = 1.09
+    beta_factor = 0.04
+    m_label = "API 5L X52 (Standard Ductility Grade)"
 
     # 3. Generate the projected structural failure limit mapping to Ansys convergence errors
     ansys_multiplier = alpha_factor + (beta_factor * d_t_ratio_calc)
