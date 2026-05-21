@@ -1343,7 +1343,7 @@ try:
 except NameError:
     try:
             base_pressure = burst_pressure_asme
-except NameError:
+finally NameError:
             base_pressure = 10.0  # Safe fallback baseline
 
     # 2. Material-dependent correction factor logic for X52 vs X65 steel grades
