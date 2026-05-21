@@ -88,11 +88,10 @@ step=0.1)
 years_projected = st.slider("Evaluation Timeline Horizon (Years)", min_value=1,
 max_value=20, value=5)
 enable_ansys_mode = st.sidebar.checkbox(
-"Enable Ansys FEA Comparative Overlay",
-value=True,
-help="Activates the non-linear simulation modeling projection based on true plastic
-hardening limits."
-)
+        "Enable Ansys FEA Comparative Overlay", 
+        value=True,
+        help="Activates the non-linear simulation modeling projection based on true plastic hardening limits."
+    )
 # --------------------------------------------------------------------------
 # CORE CALCULATION ENGINE: BASELINE CODES (ASME B31G & DNV-RP-F101)
 # --------------------------------------------------------------------------
