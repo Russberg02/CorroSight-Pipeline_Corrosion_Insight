@@ -140,7 +140,7 @@ st.markdown(f"""
     }}
     
     .section-header {{
-        background: linear-gradient(90deg, {PRIMARY}, #2E86AB);
+        background: linear-gradient(90 deg, {PRIMARY}, #2E86AB);
         color: {LIGHT_TEXT};
         padding: 12 px 20 px;
         border-radius: 8 px;
@@ -157,7 +157,7 @@ st.markdown(f"""
     }}
     .progress-bar {{
         height: 100%;
-        background: linear-gradient(90deg, {PRIMARY}, #2E86AB);
+        background: linear-gradient(90 deg, {PRIMARY}, #2E86AB);
     }}
     
     table {{
@@ -184,12 +184,12 @@ st.markdown(f"""
         transition: all 0.3 s ease;
     }}
     .metric-card:hover {{
-        transform: translateY(-5px);
+        transform: translateY(-5 px);
         box-shadow: 0 8 px 16 px rgba(0,0,0,0.12);
     }}
     
     .footer {{
-        background: linear-gradient(90deg, {PRIMARY}, #2E86AB);
+        background: linear-gradient(90 deg, {PRIMARY}, #2E86AB);
         color: {LIGHT_TEXT};
         padding: 25 px;
         border-radius: 8 px;
@@ -207,7 +207,7 @@ st.markdown(f"""
     }}
     
     .dataset-header {{
-        background: linear-gradient(90deg, {PRIMARY}, #2c3e50);
+        background: linear-gradient(90 deg, {PRIMARY}, #2c3e50);
         color: {LIGHT_TEXT};
         padding: 15 px 20 px;
         border-radius: 8 px;
