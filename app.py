@@ -88,7 +88,7 @@ st.markdown(f"""
     
     h1, h2, h3, h4, h5, h6 {{
         color: {DARK_TEXT} !important;
-        border-bottom: 2px solid {PRIMARY};
+        border-bottom: 2 px solid {PRIMARY};
         padding-bottom: 0.3rem;
     }}
     
