@@ -1344,11 +1344,12 @@ if enable_ansys_mode:
             base_pressure = 10.0
 
     # 2. Material-dependent correction factor logic for X52 vs X65 steel grades
+# Material-dependent correction factor logic
     if current_yield >= 450.0:  # API 5L X65 parameters
         alpha_factor = 1.14
         beta_factor = 0.06
         m_label = "API 5L X65 (High Strain Restitution Grade)"
-    else:            # API 5L X52 / Lower grade parameters
+    else:                       # API 5L X52 / Lower grade parameters
         alpha_factor = 1.09
         beta_factor = 0.04
         m_label = "API 5L X52 (Standard Ductility Grade)"
