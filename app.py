@@ -1272,15 +1272,17 @@ enable_ansys_mode = st.sidebar.checkbox(
 # --------------------------------------------------------------------------
 # CORE CALCULATION ENGINE: BASELINE CODES (ASME B31G & DNV-RP-F101)
 # --------------------------------------------------------------------------
-@@ -116,18 +1364,12 @@ def display_dataset_results(dataset_label):
-b_col2.metric("ASME B31G Safe Yield Limit", f"{burst_pressure_asme:.2f} MPa")
-b_col3.metric("DNV-RP-F101 Allowable Cap", f"{burst_pressure_dnv:.2f} MPa")
-data_matrix = {
-            "Assessment Criteria": [
-                "Maximum Design Limits", 
-                "Operating Thresholds", 
-                "Corrosion Safety Envelope"
-            ],
+def display_dataset_results(dataset_label):
+        st.subheader(f"Data Performance Profiles — {dataset_label}")
+        
+        b_col1, b_col2, b_col3 = st.columns(3)
+        b_col1.metric("Barlow's Intact Strength", f"{burst_pressure_intact:.2f} MPa")
+        b_col2.metric("ASME B31G Safe Yield Limit", f"{burst_pressure_asme:.2f} MPa")
+        b_col3.metric("DNV-RP-F101 Allowable Cap", f"{burst_pressure_dnv:.2f} MPa")
+        
+        # Cleaned up data matrix (removed the split line string conflict)
+        data_matrix = {
+            "Assessment Criteria": ["Maximum Design Limits", "Operating Thresholds", "Corrosion Safety Envelope"],
             "Calculated Index (MPa)": [
                 float(round(burst_pressure_intact, 2)), 
                 float(round(MAOP, 2)), 
@@ -1288,30 +1290,34 @@ data_matrix = {
             ],
             "Critical ERF": [0.44, 0.65, 0.89]
         }
-"Assessment Criteria": ["Maximum Design Limits", "Operating Thresholds", "Corrosion
-Safety Envelope"],
-"Calculated Index (MPa)": [float(round(burst_pressure_intact, 2)), float(round(MAOP,
-2)), float(round(burst_pressure, 2))],
-"Critical ERF": [0.44, 0.65, 0.89]
-}
-erf_df = pd.DataFrame(data_matrix)
-def highlight_erf(val):
-color = '#ffc7ce' if val >= 0.80 else '#c6efce'
-@@ -141,11 +1383,9 @@ def display_stress_analysis():
-"Alternating Range (MPa)": [45.2, 112.8, 14.5],
-"Fatigue Status Check": ["Acceptable", "Review Phase", "Acceptable"]
-}
-df_fatigue = pd.DataFrame(fatigue_matrix)
-def highlight_fatigue(val):
-            if val == "Review Phase":
-                return 'font-weight: bold; color: #dc3545;'
-            else:
-                return 'color: #28a745;'
-return 'font-weight: bold; color: #dc3545;' if val == "Review Phase" else 'color:
-#28a745;'
-st.dataframe(df_fatigue.style.map(highlight_fatigue, subset=['Fatigue Status Check']))
-display_dataset_results('Dataset 1')
-@@ -154,9 +1394,114 @@ def highlight_fatigue(val):
+        
+        erf_df = pd.DataFrame(data_matrix)
+        
+        def highlight_erf(val):
+            color = '#ffc7ce' if val >= 0.80 else '#c6efce'
+            return f'background-color: {color}'
+            
+        st.write("### 📈 Estimated Response Factor (ERF) Performance Ledger")
+        st.dataframe(erf_df.style.map(highlight_erf, subset=['Critical ERF']))
+
+    def display_stress_analysis():
+        st.subheader("🔄 Cyclic Operating Fatigue Analysis")
+        fatigue_matrix = {
+            "Stress Excursion Vector": ["Axial Bending", "Hoop Tension Peak", "Radial Wall Shear"],
+            "Alternating Range (MPa)": [45.2, 112.8, 14.5],
+            "Fatigue Status Check": ["Acceptable", "Review Phase", "Acceptable"]
+        }
+        df_fatigue = pd.DataFrame(fatigue_matrix)
+        
+        # Cleaned up duplicated conditional return statement
+        def highlight_fatigue(val):
+            return 'font-weight: bold; color: #dc3545;' if val == "Review Phase" else 'color: #28a745;'
+            
+        st.dataframe(df_fatigue.style.map(highlight_fatigue, subset=['Fatigue Status Check']))
+
+    # Triggering baseline displays cleanly inside main workspace
+    display_dataset_results('Dataset 1')
+    
 # NEW RESEARCH MODULE: ANSYS SIMULATION PREDICTOR MODULE
 # --------------------------------------------------------------------------
 if enable_ansys_mode:
