@@ -116,12 +116,18 @@ b_col1.metric("Barlow's Intact Strength", f"{burst_pressure_intact:.2f} MPa")
 b_col2.metric("ASME B31G Safe Yield Limit", f"{burst_pressure_asme:.2f} MPa")
 b_col3.metric("DNV-RP-F101 Allowable Cap", f"{burst_pressure_dnv:.2f} MPa")
 data_matrix = {
-"Assessment Criteria": ["Maximum Design Limits", "Operating Thresholds", "Corrosion
-Safety Envelope"],
-"Calculated Index (MPa)": [float(round(burst_pressure_intact, 2)), float(round(MAOP,
-2)), float(round(burst_pressure, 2))],
-"Critical ERF": [0.44, 0.65, 0.89]
-}
+            "Assessment Criteria": [
+                "Maximum Design Limits", 
+                "Operating Thresholds", 
+                "Corrosion Safety Envelope"
+            ],
+            "Calculated Index (MPa)": [
+                float(round(burst_pressure_intact, 2)), 
+                float(round(MAOP, 2)), 
+                float(round(burst_pressure, 2))
+            ],
+            "Critical ERF": [0.44, 0.65, 0.89]
+        }
 erf_df = pd.DataFrame(data_matrix)
 def highlight_erf(val):
 color = '#ffc7ce' if val >= 0.80 else '#c6efce'
