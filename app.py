@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
-# Fixes all deprecated .applymap() calls across your entire script instantly
-pd.api.types.is_dict_like.__self__.DataFrame.style.applymap = pd.api.types.is_dict_like.__self__.DataFrame.style.map
+# This creates a safe alias so .applymap() routes directly to .map() universally
+import streamlit as st
+if not hasattr(pd.io.formats.style.Styler, 'applymap'):
+    pd.io.formats.style.Styler.applymap = pd.io.formats.style.Styler.map
 import numpy as np
 import math
 import matplotlib.pyplot as plt
