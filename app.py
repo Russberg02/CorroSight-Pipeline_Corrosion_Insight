@@ -43,7 +43,7 @@ COLORS = {
 # 1. UNIVERSAL COMPATIBILITY PATCHES (Top-Level Scope)
 # ==============================================================================
 # This ensures older pandas .applymap calls within the original codebase do not crash
-    if not hasattr(pd.io.formats.style.Styler, "applymap"):
+if not hasattr(pd.io.formats.style.Styler, "applymap"):
     pd.io.formats.style.Styler.applymap = pd.io.formats.style.Styler.map
 
 # Custom CSS with original colors
