@@ -1360,15 +1360,15 @@ if enable_ansys_mode:
 st.markdown("### 📈 Non-Linear Material Stress Path Trajectory")
 import matplotlib.pyplot as plt
 
-    # Generate a mock internal pressure array from 0 up to your projected failure limit
-    pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
-    stress_axis = []
+# Generate a mock internal pressure array from 0 up to your projected failure limit
+pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
+stress_axis = []
 
-    # Map the multilinear stress response of X65 steel across elastic and plastic phases
-    for p in pressure_axis:
-        # Linear Elastic Region
-        calculated_stress = (p * D) / (2 * t)
-        if calculated_stress > Sy:
+# Map the multilinear stress response of X65 steel across elastic and plastic phases
+for p in pressure_axis:
+# Linear Elastic Region
+calculated_stress = (p * D) / (2 * t)
+if calculated_stress > Sy:
             # Non-linear Plastic Work Hardening Region (Bending path toward UTS)
             excess_stress = calculated_stress - Sy
             plastic_stress = Sy + (excess_stress * ((UTS - Sy) / (P_ansys_projected * 1.1)))
