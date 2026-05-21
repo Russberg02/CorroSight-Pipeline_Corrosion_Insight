@@ -1314,7 +1314,7 @@ def display_dataset_results(dataset_label):
             
         st.dataframe(df_fatigue.style.map(highlight_fatigue, subset=['Fatigue Status Check']))
 
-    # Triggering baseline displays cleanly inside main workspace scope
+    # Triggering baseline displays
     display_dataset_results('Dataset 1')
     display_stress_analysis()
     
