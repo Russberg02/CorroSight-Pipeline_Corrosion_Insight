@@ -141,9 +141,11 @@ fatigue_matrix = {
 "Alternating Range (MPa)": [45.2, 112.8, 14.5],
 "Fatigue Status Check": ["Acceptable", "Review Phase", "Acceptable"]
 }
-df_fatigue = pd.DataFrame(fatigue_matrix)
 def highlight_fatigue(val):
-return 'font-weight: bold; color: #dc3545;' if val == "Review Phase" else 'color:
+            if val == "Review Phase":
+                return 'font-weight: bold; color: #dc3545;'
+            else:
+                return 'color: #28a745;'
 #28a745;'
 st.dataframe(df_fatigue.style.map(highlight_fatigue, subset=['Fatigue Status Check']))
 display_dataset_results('Dataset 1')
