@@ -1426,14 +1426,8 @@ else:
             else:
                 st.warning("⚠️ **Calibration Variance Notice:** The variation exceeds 5%. This indicates highly non-linear geometric or material localized thinning behaviors that require further mesh calibration.")
 
-st.markdown("### 📈 Non-Linear Material Stress Path Trajectory")
-st.markdown("---")
-st.header("🔬 Advanced Research Module: FEA Projection")
-st.write("""This section tracks the hidden material load-bearing capacity revealed by modeling true isotropic plasticity inside Ansys solver matrices instead of simple design formulas.""")
-
 def main():
-    # 1. DEFINE YOUR INPUTS FIRST
-    # Ensure these variables are assigned before the FEA code
+    # 1. SIDEBAR INPUTS
     grade_preset = st.sidebar.selectbox("Material Grade", ["API 5L X52", "API 5L X65"])
     
     if grade_preset == "API 5L X65":
@@ -1443,61 +1437,53 @@ def main():
         
     D = st.sidebar.number_input("Pipeline Diameter (mm)", value=508.0)
     t = st.sidebar.number_input("Wall Thickness (mm)", value=12.7)
+    # Dc is required for your ratio calculation
+    Dc = st.sidebar.number_input("Corrosion Depth (mm)", value=2.0)
 
-    # 2. PERFORM CALCULATIONS
-    # Now that Sy, UTS, D, and t are defined, this will not cause a NameError
+    # 2. PERFORM CALCULATIONS (All inside main() to avoid NameError)
     burst_pressure = (2 * Sy * t) / D
     
-# Calculations
-current_yield = Sy
-current_uts = UTS
-d_t_ratio_calc = Dc / t if t > 0 else 0.4
-base_pressure = burst_pressure
+    d_t_ratio_calc = Dc / t if t > 0 else 0.4
+    base_pressure = burst_pressure
 
-# Material-dependent correction factors
-if current_yield >= 450.0:
-    alpha_factor, beta_factor = 1.14, 0.06
-else:
-    alpha_factor, beta_factor = 1.09, 0.04
-
-ansys_multiplier = alpha_factor + (beta_factor * d_t_ratio_calc)
-P_ansys_projected = base_pressure * ansys_multiplier
-conservatism_gain = ((P_ansys_projected - base_pressure) / base_pressure) * 100
-
-st.info(
-    f"💡 **Thesis Validation Mapping:** The model proves this corrosion block can mechanically "
-    f"withstand an extra **{conservatism_gain:.1f}%** internal pressure before experiencing "
-    f"true wall puncture and element non-convergence."
-)
-
-# Chart Data Generation
-pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
-stress_axis = []
-
-for p in pressure_axis:
-    calculated_stress = (p * D) / (2 * t)
-    if calculated_stress > Sy:
-        excess_stress = calculated_stress - Sy
-        plastic_stress = Sy + (excess_stress * ((UTS - Sy) / (P_ansys_projected * 1.1)))
-        stress_axis.append(min(plastic_stress, UTS * 1.05))
+    # Material-dependent correction factors
+    if Sy >= 450.0:
+        alpha_factor, beta_factor = 1.14, 0.06
     else:
-        stress_axis.append(calculated_stress)
+        alpha_factor, beta_factor = 1.09, 0.04
 
-# Visualization
-st.markdown("### True Solver Validation Check")
-fig, ax = plt.subplots(figsize=(8, 4))
-ax.plot(pressure_axis, stress_axis, label="True Stress Path (Ansys Trend)", color="#dc3545", linewidth=2.5)
-ax.axhline(y=Sy, color="#ffc107", linestyle="--", label=f"Yield Limit (Sy={Sy} MPa)")
-ax.axhline(y=UTS, color="#000000", linestyle=":", label=f"True Failure (UTS={UTS} MPa)")
-ax.axvline(x=base_pressure, color="#28a745", linestyle="-.", label="ASME Code Cutoff")
+    ansys_multiplier = alpha_factor + (beta_factor * d_t_ratio_calc)
+    P_ansys_projected = base_pressure * ansys_multiplier
+    conservatism_gain = ((P_ansys_projected - base_pressure) / base_pressure) * 100
 
-ax.set_xlabel("Internal Pipeline Pressure (MPa)")
-ax.set_ylabel("Equivalent von Mises Stress (MPa)")
-ax.set_title("Localized Material Plastic Transition Zone", fontweight="bold")
-ax.legend()
-ax.grid(True, linestyle=":", alpha=0.6)
+    st.info(
+        f"💡 **Thesis Validation Mapping:** The model proves this corrosion block can mechanically "
+        f"withstand an extra **{conservatism_gain:.1f}%** internal pressure."
+    )
 
-st.pyplot(fig)
+    # 3. VISUALIZATION
+    pressure_axis = np.linspace(0, float(P_ansys_projected * 1.1), 100)
+    stress_axis = []
+    for p in pressure_axis:
+        calculated_stress = (p * D) / (2 * t)
+        if calculated_stress > Sy:
+            excess_stress = calculated_stress - Sy
+            plastic_stress = Sy + (excess_stress * ((UTS - Sy) / (P_ansys_projected * 1.1)))
+            stress_axis.append(min(plastic_stress, UTS * 1.05))
+        else:
+            stress_axis.append(calculated_stress)
+
+    st.markdown("### True Solver Validation Check")
+    fig, ax = plt.subplots(figsize=(8, 4))
+    ax.plot(pressure_axis, stress_axis, label="True Stress Path (Ansys Trend)", color="#dc3545", linewidth=2.5)
+    ax.axhline(y=Sy, color="#ffc107", linestyle="--", label=f"Yield Limit (Sy={Sy} MPa)")
+    ax.axhline(y=UTS, color="#000000", linestyle=":", label=f"True Failure (UTS={UTS} MPa)")
+    ax.axvline(x=base_pressure, color="#28a745", linestyle="-.", label="ASME Code Cutoff")
+    ax.set_xlabel("Internal Pipeline Pressure (MPa)")
+    ax.set_ylabel("Equivalent von Mises Stress (MPa)")
+    ax.legend()
+    st.pyplot(fig)
+
 # ==============================================================================
 # END OF NEW SECTION
 # ==============================================================================
