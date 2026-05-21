@@ -877,7 +877,7 @@ def display_dataset_results(dataset_name):
             return f'color: {color}; font-weight: {weight};'
         
         st.dataframe(
-            erf_df.style.applymap(highlight_erf, subset=['Critical ERF']),
+            erf_df.style.map(highlight_erf, subset=['Critical ERF']),
             height=300
         )
 
