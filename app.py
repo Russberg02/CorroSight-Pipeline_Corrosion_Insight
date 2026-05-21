@@ -1256,24 +1256,17 @@ st.header("🔬 Advanced Research Module: Finite Element Analysis (FEA) Projecti
 st.write("This section tracks the hidden material load-bearing capacity revealed by modeling true isotropic plasticity inside Ansys solver matrices instead of simple design formulas.")
 
 # New Sidebar Toggle - Injects itself cleanly at the bottom of your existing sidebar
-st.title(" CorroSight: Subsea Pipeline Integrity Assessment Platform")
+st.title("🛡️ CorroSight: Subsea Pipeline Integrity Assessment Platform")
 st.write("Mechanical Engineering Final Year Research Tool — Structural Reliability Evaluation")
 # --------------------------------------------------------------------------
-@@ -88,10 +1331,15 @@ def main():
-years_projected = st.slider("Evaluation Timeline Horizon (Years)", min_value=1,
-max_value=20, value=5)
+
+# Fixed sidebar inputs and cleaned up the duplicated/broken checkbox configuration
+years_projected = st.slider("Evaluation Timeline Horizon (Years)", min_value=1, max_value=20, value=5)
+
 enable_ansys_mode = st.sidebar.checkbox(
-        "Enable Ansys FEA Comparative Overlay", 
-        value=True,
-        help="Activates the non-linear simulation modeling projection based on true plastic hardening limits."
-    )
     "Enable Ansys FEA Comparative Overlay", 
     value=True,
     help="Activates the non-linear simulation modeling projection based on true plastic hardening limits."
-"Enable Ansys FEA Comparative Overlay",
-value=True,
-help="Activates the non-linear simulation modeling projection based on true plastic
-hardening limits."
 )
 
 # --------------------------------------------------------------------------
