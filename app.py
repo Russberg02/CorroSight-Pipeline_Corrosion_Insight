@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 # This creates a safe alias so .applymap() routes directly to .map() universally
 import streamlit as st
-if not hasattr(pd.io.formats.style.Styler, 'applymap'):
-    pd.io.formats.style.Styler.applymap = pd.io.formats.style.Styler.map
+if not hasattr(pd.Styler, 'applymap'):
+    pd.Styler.applymap = pd.Styler.map
 import numpy as np
 import math
 import pandas as pd
@@ -43,8 +43,8 @@ COLORS = {
 # 1. UNIVERSAL COMPATIBILITY PATCHES (Top-Level Scope)
 # ==============================================================================
 # This ensures older pandas .applymap calls within the original codebase do not crash
-if not hasattr(pd.io.formats.style.Styler, "applymap"):
-    pd.io.formats.style.Styler.applymap = pd.io.formats.style.Styler.map
+if not hasattr(pd.Styler, 'applymap'):
+    pd.Styler.applymap = pd.Styler.map
 
 # Custom CSS with original colors
 st.markdown(f"""
