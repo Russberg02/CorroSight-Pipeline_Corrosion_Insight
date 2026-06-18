@@ -2,8 +2,16 @@ import streamlit as st
 import pandas as pd
 # This creates a safe alias so .applymap() routes directly to .map() universally
 import streamlit as st
-if not hasattr(pd.Styler, 'applymap'):
-    pd.Styler.applymap = pd.Styler.map
+# Robust compatibility patch for the CorroSight Calculator
+try:
+    # Attempt to find the Styler class in its standard internal location
+    from pandas.io.formats.style import Styler
+except ImportError:
+    # Fallback: get the Styler class directly from a DataFrame instance
+    Styler = type(pd.DataFrame().style)
+
+if not hasattr(Styler, 'applymap'):
+    Styler.applymap = Styler.map
 import numpy as np
 import math
 import pandas as pd
