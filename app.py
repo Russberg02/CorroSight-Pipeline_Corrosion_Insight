@@ -42,9 +42,16 @@ COLORS = {
 # ==============================================================================
 # 1. UNIVERSAL COMPATIBILITY PATCHES (Top-Level Scope)
 # ==============================================================================
-# This ensures older pandas .applymap calls within the original codebase do not crash
-if not hasattr(pd.Styler, 'applymap'):
-    pd.Styler.applymap = pd.Styler.map
+# Robust compatibility patch for the CorroSight Calculator
+try:
+    # Attempt to find the Styler class in its standard internal location
+    from pandas.io.formats.style import Styler
+except ImportError:
+    # Fallback: get the Styler class directly from a DataFrame instance
+    Styler = type(pd.DataFrame().style)
+
+if not hasattr(Styler, 'applymap'):
+    Styler.applymap = Styler.map
 
 # Custom CSS with original colors
 st.markdown(f"""
