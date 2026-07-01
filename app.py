@@ -1159,6 +1159,107 @@ def display_stress_analysis():
         """, unsafe_allow_html=True)
 
 
+def create_references():
+    st.markdown(f"""
+    <div class="section-header">
+        <h3 style="margin:0;">📚 References & Resources</h3>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    ref_col1, ref_col2 = st.columns([1, 1])
+    
+    with ref_col1:
+        with st.expander("Research References", expanded=False):
+            st.markdown("""
+            - **Mohd et al. (2014)**  
+            Journal of Offshore Mechanics and Arctic Engineering  
+            On the Burst Strength Capacity of an Aging Subsea Gas Pipeline  
+            [DOI:10.1115/1.4028041](https://doi.org/10.1115/1.4028041)
+            
+            - **ASME B31G-2012**  
+            Manual for Determining the Remaining Strength of Corroded Pipelines
+            
+            - **DNV-RP-F101**  
+            Corroded Pipelines Standard
+            """)
+    
+    with ref_col2:
+        with st.expander("Additional Resources", expanded=False):
+            st.markdown("""
+            - Pipeline Corrosion Assessment Guide  
+            [ASME Standards](https://www.asme.org/codes-standards)
+            
+            - Corrosion Rate Calculators  
+            [NACE International](https://www.nace.org)
+            
+            - Pipeline Integrity Management Standards  
+            [API Standards](https://www.api.org)
+            """)
+
+def create_footer():
+    st.markdown(f"""
+    <div class="footer">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <h4 style="margin:0; color:{LIGHT_TEXT};">Corrosion Insight Tool v2.0</h4>
+                <p style="margin:5px 0 0; color:#BBDEFB;">Pipeline Integrity & Fitness-for-Service Analysis</p>
+            </div>
+            <div style="text-align:right;">
+                <p style="margin:0; color:#BBDEFB;">Technical Support:</p>
+                <p style="margin:0; color:#BBDEFB;">2022471008@student.uitm.edu.my</p>
+                <p style="margin:0; color:#BBDEFB;">Aflfliation:</p>
+                <p style="margin:0; color:#BBDEF8;">Ir. Dr. Mohd Shahrom bin Ismail(Project Advisor)</p>
+                <p style="margin:0; color:#BBDEF8;">Russell Spielberg(Project Leader)</p>
+                <p style="margin:0; color:#BBDEF8;">Mohd. Faiz(Project Member)</p>
+                <p style="margin:0; color:#BBDEF8;">Muhd. Taufik(Project Member)</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:20px; color:#BBDEFB;">
+            © 2025 Pipeline Engineering Solutions | All rights reserved
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# Main Application
+def main():
+    create_header()
+    create_sidebar()
+    
+    # 1. Pipeline Configuration
+    create_intro_section()
+    
+    if st.session_state.run_analysis:
+        # Only show datasets that are selected
+        if st.session_state.show_datasets[0]:
+            display_dataset_results('Dataset 1')
+        if st.session_state.show_datasets[1]:
+            display_dataset_results('Dataset 2')
+        if st.session_state.show_datasets[2]:
+            display_dataset_results('Dataset 3')
+        
+        # Only show stress analysis if at least one dataset is selected
+        if any(st.session_state.show_datasets):
+            display_stress_analysis()
+        else:
+            st.warning("No datasets selected for analysis. Please select at least one dataset to view results.")
+    else:
+        st.markdown(f"""
+        <div style="background:{CARD_BG}; text-align:center; padding:40px 20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.08);">
+            <h4 style="color:{DARK_TEXT}; margin-bottom:20px;">⏳ Ready for Analysis</h4>
+            <p style="color:{DARK_TEXT}; font-size:1.1rem; max-width:600px; margin:0 auto;">
+                Select a dataset, enter pipeline parameters in the sidebar, and click 'Run Analysis'
+            </p>
+            <div class="progress-container" style="max-width:400px; margin:30px auto;">
+                <div class="progress-bar" style="width:30%;"></div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    create_references()
+    create_footer()
+
+if __name__ == "__main__":
+    main()
 
 # ==============================================================================
 # NEW RESEARCH SECTION: ANSYS SIMULATION PREDICTOR MODULE
@@ -1401,107 +1502,5 @@ def main():
 # ==============================================================================
 # END OF NEW SECTION
 # ==============================================================================
-if __name__ == "__main__":
-    main()
-
-def create_references():
-    st.markdown(f"""
-    <div class="section-header">
-        <h3 style="margin:0;">📚 References & Resources</h3>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    ref_col1, ref_col2 = st.columns([1, 1])
-    
-    with ref_col1:
-        with st.expander("Research References", expanded=False):
-            st.markdown("""
-            - **Mohd et al. (2014)**  
-            Journal of Offshore Mechanics and Arctic Engineering  
-            On the Burst Strength Capacity of an Aging Subsea Gas Pipeline  
-            [DOI:10.1115/1.4028041](https://doi.org/10.1115/1.4028041)
-            
-            - **ASME B31G-2012**  
-            Manual for Determining the Remaining Strength of Corroded Pipelines
-            
-            - **DNV-RP-F101**  
-            Corroded Pipelines Standard
-            """)
-    
-    with ref_col2:
-        with st.expander("Additional Resources", expanded=False):
-            st.markdown("""
-            - Pipeline Corrosion Assessment Guide  
-            [ASME Standards](https://www.asme.org/codes-standards)
-            
-            - Corrosion Rate Calculators  
-            [NACE International](https://www.nace.org)
-            
-            - Pipeline Integrity Management Standards  
-            [API Standards](https://www.api.org)
-            """)
-
-def create_footer():
-    st.markdown(f"""
-    <div class="footer">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div>
-                <h4 style="margin:0; color:{LIGHT_TEXT};">Corrosion Insight Tool v2.0</h4>
-                <p style="margin:5px 0 0; color:#BBDEFB;">Pipeline Integrity & Fitness-for-Service Analysis</p>
-            </div>
-            <div style="text-align:right;">
-                <p style="margin:0; color:#BBDEFB;">Technical Support:</p>
-                <p style="margin:0; color:#BBDEFB;">2022471008@student.uitm.edu.my</p>
-                <p style="margin:0; color:#BBDEFB;">Aflfliation:</p>
-                <p style="margin:0; color:#BBDEF8;">Ir. Dr. Mohd Shahrom bin Ismail(Project Advisor)</p>
-                <p style="margin:0; color:#BBDEF8;">Russell Spielberg(Project Leader)</p>
-                <p style="margin:0; color:#BBDEF8;">Mohd. Faiz(Project Member)</p>
-                <p style="margin:0; color:#BBDEF8;">Muhd. Taufik(Project Member)</p>
-            </div>
-        </div>
-        <div style="text-align:center; margin-top:20px; color:#BBDEFB;">
-            © 2025 Pipeline Engineering Solutions | All rights reserved
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Main Application
-def main():
-    create_header()
-    create_sidebar()
-    
-    # 1. Pipeline Configuration
-    create_intro_section()
-    
-    if st.session_state.run_analysis:
-        # Only show datasets that are selected
-        if st.session_state.show_datasets[0]:
-            display_dataset_results('Dataset 1')
-        if st.session_state.show_datasets[1]:
-            display_dataset_results('Dataset 2')
-        if st.session_state.show_datasets[2]:
-            display_dataset_results('Dataset 3')
-        
-        # Only show stress analysis if at least one dataset is selected
-        if any(st.session_state.show_datasets):
-            display_stress_analysis()
-        else:
-            st.warning("No datasets selected for analysis. Please select at least one dataset to view results.")
-    else:
-        st.markdown(f"""
-        <div style="background:{CARD_BG}; text-align:center; padding:40px 20px; border-radius:8px; box-shadow:0 4px 8px rgba(0,0,0,0.08);">
-            <h4 style="color:{DARK_TEXT}; margin-bottom:20px;">⏳ Ready for Analysis</h4>
-            <p style="color:{DARK_TEXT}; font-size:1.1rem; max-width:600px; margin:0 auto;">
-                Select a dataset, enter pipeline parameters in the sidebar, and click 'Run Analysis'
-            </p>
-            <div class="progress-container" style="max-width:400px; margin:30px auto;">
-                <div class="progress-bar" style="width:30%;"></div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-    
-    create_references()
-    create_footer()
-
 if __name__ == "__main__":
     main()
